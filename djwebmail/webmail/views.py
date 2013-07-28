@@ -40,7 +40,10 @@ class ListMessages(generic.TemplateView):
             decrypt(self.request.session.get('password'))
         )
 
+        #for folder in connnection.list_folders():
+
         context['folders'] = connection.list_folders()
+
 
         return context
 
@@ -75,6 +78,8 @@ class Login(generic.FormView):
                     self.request.session['username'] = username
                     self.request.session['password'] = encrypt(password)
                     self.request.session['host'] = host.id
+
+                    print(encrypt(password))
 
                     return HttpResponseRedirect(redirect_to)
 
